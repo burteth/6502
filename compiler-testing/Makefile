@@ -1,4 +1,8 @@
 
+custom: 
+	cc64 -t none --cpu 6502 hello.c
+	ca65 --cpu 6502 fill.s
+	lda65 -C config.cfg -m hello.map fill.o hello.o
 
 
 nop: hello.c nop.s

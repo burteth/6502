@@ -1,4 +1,8 @@
-.export _io_fill
+.export _io_fill, _io_disp, _io_init
+
+;.zeropage
+;_line_data:     .res 2 ; Reserve a local zero page pointer
+
 
 .segment "CODE"
 
@@ -11,17 +15,21 @@ DDRA  = $6003
 
     ;.org $8000
 
+
+_io_init:
+
+    ; Initialize IO chip
+    lda #%11111111 ; Set all pins on port B to output
+    sta DDRB
+
+    lda #%11111111 ; Set all pins on port A to output
+    sta DDRA
+
+    rts
+
+
 _io_fill:
 ;reset:
-    
-    ;pha ; push a onto the stack
-
-    ;tya ; transfer y to a 
-    ;pha ; push y onto the stack
-
-    ;txa ; transfer x to a 
-    ;pha ; push x onto the stack
-     
     nop
     nop
     nop
@@ -44,37 +52,51 @@ _io_fill:
     nop
     nop
     rts
+    
+ 
+; (char line_data, char row_index)
+_io_disp:
+    
+    ;tay ; transfer a to y (line_data)
+    tax
 
-    ;; Initialize the stack pointer
-    ;ldx #$ff
-    ;txs
-
-    ;; Initialize IO chip
-    ;lda #%11111111 ; Set all pins on port B to output
-    ;sta DDRB
-
-    ;lda #%11111111 ; Set all pins on port A to output
-    ;sta DDRA
-
-    ;;; Steps:
-    ;;;  1) Set column data
-    ;;;  2) Set which row
-    ;;;  3) Wait
-    ;;;  3) Set row (PORTA) to 0x00
+    ;; Steps:
+    ;;  1) Set column data
+    ;;  2) Set which row
+    ;;  3) Wait
+    ;;  3) Set row (PORTA) to 0x00
 
     ;ldx #$0
 
-;loop:
+    ; Cleanup the column
+    lda #$ff
+    sta COL_PORT
+    
+    ;txa ; transfer row_index to regA
+    lda #%00000001
+    sta ROW_PORT ; Specify the row we are changing
 
-    ;; Cleanup the column
-    ;lda #$ff
-    ;sta COL_PORT
+    txa
+    eor #$ff ; Get the inverse of the current counter
+    sta COL_PORT ; Write to the row
 
-    ;lda #%00000001
-    ;sta ROW_PORT ; Specify the row we are changing
+    lda #%00000000
+    sta ROW_PORT ; Reset row spec
 
-    ;txa ; Transfer regX to regA
-    ;eor #$ff ; Get the inverse of the current counter
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+    ;nop
+
+    ;;txa
+    ;;eor #$ff ; Get the inverse of the current counter
+
+    ;lda #%11111111
     ;sta COL_PORT ; Write to the row
 
     ;lda #%00000000
@@ -82,17 +104,9 @@ _io_fill:
 
     ;inx ; increment regX
     
-    ;; Restore registers
-    ;pla ; pop x off of stack 
-    ;tax ; transfer a to x
-
-    ;pla ; pop y off of stack 
-    ;tay ; transfer a to y
-
-    ;pla ; pop x off of stack 
     ;rts ; return from subroutines
-
-    ;;jmp loop
+    rts
+    ;jmp loop
 
 ;; Bootloader type thing maybe
     ;;.org $fffc
