@@ -1,0 +1,178 @@
+Modules list:
+-------------
+hello.o:
+    CODE              Offs=000000  Size=000021  Align=00001  Fill=0000
+fill.o:
+    CODE              Offs=000021  Size=000038  Align=00001  Fill=0000
+none.lib(condes.o):
+    CODE              Offs=000059  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+none.lib(copydata.o):
+    CODE              Offs=000065  Size=00002D  Align=00001  Fill=0000
+none.lib(crt0.o):
+    STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
+none.lib(decsp1.o):
+    CODE              Offs=000092  Size=000009  Align=00001  Fill=0000
+none.lib(incsp2.o):
+    CODE              Offs=00009B  Size=000016  Align=00001  Fill=0000
+none.lib(mod.o):
+    CODE              Offs=0000B1  Size=000011  Align=00001  Fill=0000
+none.lib(negabs.o):
+    CODE              Offs=0000C2  Size=000012  Align=00001  Fill=0000
+none.lib(popptr1.o):
+    CODE              Offs=0000D4  Size=00000E  Align=00001  Fill=0000
+none.lib(pushax.o):
+    CODE              Offs=0000E2  Size=00001A  Align=00001  Fill=0000
+none.lib(shelp.o):
+    CODE              Offs=0000FC  Size=000020  Align=00001  Fill=0000
+none.lib(udiv.o):
+    CODE              Offs=00011C  Size=00004F  Align=00001  Fill=0000
+none.lib(zerobss.o):
+    CODE              Offs=00016B  Size=000023  Align=00001  Fill=0000
+none.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000000  000019  00001A  00001
+DATA                  000200  000224  000025  00001
+STARTUP               008025  008040  00001C  00001
+ONCE                  008041  00804C  00000C  00001
+CODE                  00804D  0081DA  00018E  00001
+
+
+Exports list by name:
+---------------------
+__BSS_RUN__               000225 RLA    __BSS_SIZE__              000000 REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     008041 RLA    
+__DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA    
+__DATA_SIZE__             000025 REA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      008041 RLA    __RAM_SIZE__              003E00 REA    
+__RAM_START__             000200 RLA    __STARTUP__               000001 REA    
+_io_disp                  00808F RLA    _io_init                  00806E RLA    
+_main                     00804D RLA    copydata                  0080B2 RLA    
+decsp1                    0080DF RLA    donelib                   0080A6 RLA    
+incsp2                    0080F0 RLA    initlib                   008041 RLA    
+negax                     008113 RLA    popax                     0080E8 RLA    
+popptr1                   008121 RLA    popsargsudiv16            008149 RLA    
+ptr1                      000008 RLZ    ptr2                      00000A RLZ    
+ptr4                      00000E RLZ    pushax                    008133 RLA    
+sp                        000000 RLZ    sreg                      000002 RLZ    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tosmodax                  008100 RLA    udiv16                    00817A RLA    
+zerobss                   0081B8 RLA    
+
+
+Exports list by value:
+----------------------
+__BSS_SIZE__              000000 REA    __CONSTRUCTOR_COUNT__     000000 REA    
+sp                        000000 RLZ    __DESTRUCTOR_COUNT__      000000 REA    
+__STARTUP__               000001 REA    sreg                      000002 RLZ    
+ptr1                      000008 RLZ    ptr2                      00000A RLZ    
+ptr4                      00000E RLZ    tmp1                      000010 RLZ    
+tmp2                      000011 RLZ    __DATA_SIZE__             000025 REA    
+__RAM_START__             000200 RLA    __DATA_RUN__              000200 RLA    
+__BSS_RUN__               000225 RLA    __RAM_SIZE__              003E00 REA    
+__DATA_LOAD__             008000 RLA    initlib                   008041 RLA    
+__CONSTRUCTOR_TABLE__     008041 RLA    __DESTRUCTOR_TABLE__      008041 RLA    
+_main                     00804D RLA    _io_init                  00806E RLA    
+_io_disp                  00808F RLA    donelib                   0080A6 RLA    
+copydata                  0080B2 RLA    decsp1                    0080DF RLA    
+popax                     0080E8 RLA    incsp2                    0080F0 RLA    
+tosmodax                  008100 RLA    negax                     008113 RLA    
+popptr1                   008121 RLA    pushax                    008133 RLA    
+popsargsudiv16            008149 RLA    udiv16                    00817A RLA    
+zerobss                   0081B8 RLA    
+
+
+Imports list:
+-------------
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s:8
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s:8
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s:18
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s:18
+__DATA_LOAD__ ([linker generated]):
+    copydata.o                common/copydata.s:8
+__DATA_RUN__ ([linker generated]):
+    copydata.o                common/copydata.s:8
+__DATA_SIZE__ ([linker generated]):
+    copydata.o                common/copydata.s:8
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s:19
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s:19
+__RAM_SIZE__ ([linker generated]):
+    crt0.o                    crt0.s:11
+__RAM_START__ ([linker generated]):
+    crt0.o                    crt0.s:11
+__STARTUP__ (crt0.o):
+    hello.o                   hello.s:13
+_io_disp (fill.o):
+    hello.o                   hello.s:15
+_io_init (fill.o):
+    hello.o                   hello.s:14
+_main (hello.o):
+    crt0.o                    crt0.s:8
+copydata (copydata.o):
+    crt0.o                    crt0.s:13
+decsp1 (decsp1.o):
+    hello.o                   hello.s:45
+donelib (condes.o):
+    crt0.o                    crt0.s:13
+incsp2 (incsp2.o):
+    popptr1.o                 runtime/popptr1.s:8
+initlib (condes.o):
+    crt0.o                    crt0.s:13
+negax (negabs.o):
+    shelp.o                   runtime/shelp.s:11
+    mod.o                     runtime/mod.s:11
+popax (incsp2.o):
+    shelp.o                   runtime/shelp.s:11
+popptr1 (popptr1.o):
+    udiv.o                    runtime/udiv.s:9
+popsargsudiv16 (shelp.o):
+    mod.o                     runtime/mod.s:11
+ptr1 (zeropage.o):
+    popptr1.o                 runtime/popptr1.s:9
+    copydata.o                common/copydata.s:9
+    zerobss.o                 common/zerobss.s:9
+    udiv.o                    runtime/udiv.s:10
+    shelp.o                   runtime/shelp.s:12
+ptr2 (zeropage.o):
+    copydata.o                common/copydata.s:9
+ptr4 (zeropage.o):
+    udiv.o                    runtime/udiv.s:10
+    shelp.o                   runtime/shelp.s:12
+pushax (pushax.o):
+    hello.o                   hello.s:45
+sp (zeropage.o):
+    popptr1.o                 runtime/popptr1.s:9
+    incsp2.o                  runtime/incsp2.s:8
+    pushax.o                  runtime/pushax.s:8
+    decsp1.o                  runtime/decsp1.s:8
+    crt0.o                    /usr/local/Cellar/cc65/2.19/share/cc65/asminc/zeropage.inc:11
+    hello.o                   hello.s:10
+sreg (zeropage.o):
+    udiv.o                    runtime/udiv.s:10
+    mod.o                     runtime/mod.s:12
+tmp1 (zeropage.o):
+    copydata.o                common/copydata.s:9
+    shelp.o                   runtime/shelp.s:12
+    mod.o                     runtime/mod.s:12
+tmp2 (zeropage.o):
+    shelp.o                   runtime/shelp.s:12
+tosmodax (mod.o):
+    hello.o                   hello.s:45
+udiv16 (udiv.o):
+    shelp.o                   runtime/shelp.s:11
+zerobss (zerobss.o):
+    crt0.o                    crt0.s:13
+

@@ -3,7 +3,7 @@ custom:
 	cc65 -t none -O --cpu 65c02 hello.c
 	ca65 --cpu 6502 hello.s
 	ca65 --cpu 6502 fill.s
-	ld65 --start-addr 0x8000 -C config.cfg -o hello.bin hello.o fill.o none.lib
+	ld65 -C config.cfg -o hello.bin hello.o fill.o none.lib
 
 
 nop: hello.c nop.s
@@ -15,7 +15,7 @@ hello: hello.c fill.s
 
 # Burn ROM to EEPROM
 install: hello.bin
-	minipro -p AT28C256 -w hello.bin
+	minipro -p AT28C256 -w fill.bin
 
 
 clean:

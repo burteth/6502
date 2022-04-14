@@ -1,8 +1,46 @@
-.export _io_fill, _io_disp, _io_init
-
+.export _init, _io_fill, _io_disp, _io_init
+.import _main
 ;.zeropage
 ;_line_data:     .res 2 ; Reserve a local zero page pointer
 
+.export   __STARTUP__ : absolute = 1        ; Mark as startup
+
+; ---------------------------------------------------------------------------
+
+.segment "STARTUP"
+
+_init:    LDX     #$FF                 ; Initialize stack pointer to $01FF
+          TXS
+          CLD                          ; Clear decimal mode
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          nop
+          JSR   _main
+
+; ---------------------------------------------------------------------------
 
 .segment "CODE"
 
